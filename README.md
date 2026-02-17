@@ -1,59 +1,88 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Academic Portal Course and Enrollment System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Mini Academic Portal built with Laravel to manage Students, Courses, and Enrollments using MVC architecture and Eloquent relationships.
 
-## About Laravel
+## Implemented Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- `students` table:
+  - `id`
+  - `student_number` (unique)
+  - `first_name`
+  - `last_name`
+  - `email` (unique)
+  - timestamps
+- `courses` table:
+  - `id`
+  - `course_code` (unique)
+  - `course_name`
+  - `capacity` (integer)
+  - timestamps
+- `enrollments` table (pivot):
+  - `id`
+  - `student_id` (FK to `students.id`)
+  - `course_id` (FK to `courses.id`)
+  - timestamps
+  - unique pair constraint on (`student_id`, `course_id`)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Eloquent Relationships
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- `Student` model:
+  - `belongsToMany(Course::class, 'enrollments')->withTimestamps()`
+- `Course` model:
+  - `belongsToMany(Student::class, 'enrollments')->withTimestamps()`
 
-## Learning Laravel
+## Modules
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- Student module:
+  - list all students
+  - view student profile with enrolled courses
+- Course module:
+  - list all courses
+  - view course detail with enrolled students
+- Enrollment module:
+  - enroll student in course
+  - prevent duplicate enrollments
+  - enforce course capacity
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Business Rules Enforced
 
-## Laravel Sponsors
+- No duplicate enrollment per student/course.
+- Enrollment blocked when course reaches capacity.
+- Student identity protection in enrollment flow:
+  - rejects enroll attempts when email and student number belong to different existing records.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Setup
 
-### Premium Partners
+1. Install dependencies:
+   ```bash
+   composer install
+   npm install
+   ```
+2. Create env file:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+3. Configure database in `.env`.
+4. Run migrations:
+   ```bash
+   php artisan migrate
+   ```
+5. Start app:
+   ```bash
+   php artisan serve
+   npm run dev
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Submission Notes
 
-## Contributing
+- Push project to your own GitHub repository.
+- Include:
+  - all source code
+  - migration files
+- Exclude:
+  - `.env`
+  - `vendor/`
+  - `node_modules/`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+For zip submission, compress the project without `vendor/` and `node_modules/`.
