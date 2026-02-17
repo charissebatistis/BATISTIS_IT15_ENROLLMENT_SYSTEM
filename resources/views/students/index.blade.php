@@ -51,7 +51,6 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <div>
                 <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Student List</h1>
-                <p class="text-slate-500 mt-2 text-base">Manage and view all registered students in the system.</p>
             </div>
             
           <a href="{{ route('students.create') }}" 
@@ -132,7 +131,7 @@
     </main>
 
     <footer class="py-12 text-center text-slate-400 text-sm">
-        &copy; 2026 Academic Portal System. Built for efficiency.
+        &copy; 2026 Academic Portal System. 
     </footer>
 
 </body>

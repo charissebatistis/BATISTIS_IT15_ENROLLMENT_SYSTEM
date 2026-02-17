@@ -30,7 +30,6 @@
         <div class="flex justify-between items-end mb-10">
             <div>
                 <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Course Catalog</h1>
-                <p class="text-slate-500 mt-2 font-medium">Manage academic offerings and student capacities.</p>
             </div>
             <a href="{{ route('courses.create') }}" class="bg-indigo-600 text-white px-6 py-3.5 rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center gap-2 active:scale-95">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>

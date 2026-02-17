@@ -39,10 +39,6 @@
                 Welcome to the <br><span class="text-indigo-600">Enrollment System</span>
             </h1>
             
-            <p class="text-base text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-                Manage students, courses, and enrollments with ease. This portal ensures course capacity limits are respected and prevents duplicate enrollments automatically.
-            </p>
-            
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="/students" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:bg-indigo-700 hover:-translate-y-1 transition-all">
                     View Students
@@ -58,7 +54,7 @@
     </main>
 
     <footer class="py-8 text-center text-slate-400 text-sm">
-        &copy; 2026 Academic Portal System. Built for efficiency.
+        &copy; 2026 Academic Portal System.
     </footer>
 
 </body>
